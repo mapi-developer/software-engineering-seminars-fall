@@ -2,22 +2,63 @@ namespace Seminar_first
 {
     public partial class FormMain : Form
     {
-        private string btnTextClicked = "You're just clicked me !!!";
-        private string btnTextMain = "Click Me!";
-
         public FormMain()
         {
             InitializeComponent();
         }
 
-        private void btnClickMe_Click(object sender, EventArgs e)
+        // Calculate button handlers
+        private void btnCalculate_Click(object sender, EventArgs e)
         {
-            btnClickMe.Text = btnTextClicked;
+            decimal loanAmount = decimal.Parse(tbLoanAmount.Text);
+            decimal monthlyInterest = decimal.Parse(tbMonthlyInterest.Text);
+            decimal monthlyPayment = decimal.Parse(tbMonthlyPayment.Text);
+
+            decimal remaining = loanAmount;
+            decimal paid = 0;
+
+            while (remaining > 0)
+            {
+                decimal interest = remaining * (monthlyInterest / 100);
+
+                if (interest >= monthlyPayment)
+                {
+                    tbTotalPayment.Text = "Loan can't be covered";
+                    return;
+                }
+
+                remaining += interest;
+
+                if (remaining < monthlyPayment)
+                {
+                    monthlyPayment = remaining;
+                }
+                remaining -= monthlyPayment;
+
+                paid += monthlyPayment;
+            }
+
+            tbTotalPayment.Text = Math.Ceiling(paid).ToString();
         }
 
-        private void btnClickMe_MouseLeave(object sender, EventArgs e)
+
+        // Reset Button handlers
+        private void btnReset_Click(object sender, EventArgs e)
         {
-            btnClickMe.Text = btnTextMain;
+            tbLoanAmount.Text = "";
+            tbMonthlyInterest.Text = "";
+            tbMonthlyPayment.Text = "";
+            tbTotalPayment.Text = "";
+        }
+
+        // Text boxes handlers
+        private void tbAny_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+            if (!char.IsControl(c) && !char.IsDigit(c) && (c != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
