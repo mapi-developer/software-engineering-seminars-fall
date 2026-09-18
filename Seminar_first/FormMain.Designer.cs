@@ -1,6 +1,6 @@
 ﻿namespace Seminar_first
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            btnClickMe = new Button();
+            SuspendLayout();
+            // 
+            // btnClickMe
+            // 
+            btnClickMe.BackColor = Color.CadetBlue;
+            btnClickMe.Location = new Point(269, 167);
+            btnClickMe.Name = "btnClickMe";
+            btnClickMe.Size = new Size(242, 109);
+            btnClickMe.TabIndex = 0;
+            btnClickMe.Text = "Click me!";
+            btnClickMe.UseVisualStyleBackColor = false;
+            btnClickMe.Click += btnClickMe_Click;
+            // 
+            // FormMain
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnClickMe);
+            Name = "FormMain";
             Text = "Form1";
+            Click += btnClickMe_Click;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnClickMe;
     }
 }
