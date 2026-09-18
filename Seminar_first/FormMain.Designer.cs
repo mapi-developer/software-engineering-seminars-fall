@@ -162,7 +162,7 @@
             Controls.Add(labelMainTitle);
             Controls.Add(btnCalculate);
             Name = "FormMain";
-            Text = "FormMain";
+            Text = "Simple Loan Calculator";
             ResumeLayout(false);
             PerformLayout();
         }
