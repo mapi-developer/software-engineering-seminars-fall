@@ -28,13 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            buttonFib = new Button();
             SuspendLayout();
+            // 
+            // buttonFib
+            // 
+            buttonFib.Location = new Point(254, 12);
+            buttonFib.Name = "buttonFib";
+            buttonFib.Size = new Size(343, 75);
+            buttonFib.TabIndex = 0;
+            buttonFib.Text = "ClickMe";
+            buttonFib.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonFib);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -42,5 +53,7 @@
         }
 
         #endregion
+
+        private Button buttonFib;
     }
 }

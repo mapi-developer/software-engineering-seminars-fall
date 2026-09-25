@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace ButtonsPlayground
 {
     public partial class Form1 : Form
@@ -17,7 +19,7 @@ namespace ButtonsPlayground
                 b.Height = 30;
                 b.Width = 100;
 
-                b.Text = Factorial(i).ToString();
+                b.Text = Fibonacci(i).ToString();
 
                 Controls.Add(b);
             }
@@ -35,6 +37,25 @@ namespace ButtonsPlayground
             }
 
             return result;
+        }
+
+        int Fibonacci(int number)
+        {
+            if (number == 0) return 0;
+            if (number == 1) return 1;
+
+            int a = 0;
+            int b = 1;
+
+            for (int i = 2; i <= number; i++)
+            {
+                int temp = a + b;
+                a = b;
+                b = temp;
+            }
+
+
+            return b;
         }
     }
 }
