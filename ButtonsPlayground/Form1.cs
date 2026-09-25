@@ -19,7 +19,7 @@ namespace ButtonsPlayground
                 b.Height = 30;
                 b.Width = 100;
 
-                b.Text = Fibonacci(i).ToString();
+                b.Text = Factorial(i).ToString();
 
                 Controls.Add(b);
             }
@@ -31,7 +31,7 @@ namespace ButtonsPlayground
 
             int result = 1;
 
-            for (int i = 2; i <= number;i++)
+            for (int i = 2; i <= number; i++)
             {
                 result *= i;
             }
@@ -39,23 +39,16 @@ namespace ButtonsPlayground
             return result;
         }
 
-        int Fibonacci(int number)
+        int Fib(int n)
         {
-            if (number == 0) return 0;
-            if (number == 1) return 1;
+            return (n < 2) ? n : Fib(n - 1) + Fib(n - 2);
+        }
 
-            int a = 0;
-            int b = 1;
+        private void buttonFib_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBox1.Text, out int FibEntry)) return;
 
-            for (int i = 2; i <= number; i++)
-            {
-                int temp = a + b;
-                a = b;
-                b = temp;
-            }
-
-
-            return b;
+            MessageBox.Show(Fib(FibEntry).ToString());
         }
     }
 }
