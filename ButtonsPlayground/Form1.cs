@@ -17,8 +17,24 @@ namespace ButtonsPlayground
                 b.Height = 30;
                 b.Width = 100;
 
+                b.Text = Factorial(i).ToString();
+
                 Controls.Add(b);
             }
+        }
+
+        int Factorial(int number)
+        {
+            if (number < 0) throw new ArgumentOutOfRangeException();
+
+            int result = 1;
+
+            for (int i = 2; i <= number;i++)
+            {
+                result *= i;
+            }
+
+            return result;
         }
     }
 }
