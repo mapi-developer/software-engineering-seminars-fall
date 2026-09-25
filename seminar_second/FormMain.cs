@@ -60,5 +60,25 @@ namespace seminar_second
                 e.Handled = true;
             }
         }
+
+        private void tbAny_TextChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(sender);
+            if (double.TryParse(tbLoanAmount.Text, out double x))
+            {
+                tbLoanAmount.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                if (tbLoanAmount.Text.Length == 0)
+                {
+                    tbLoanAmount.BackColor = Color.White;
+                }
+                else
+                {
+                    tbLoanAmount.BackColor = Color.Salmon;
+                }
+            }
+        }
     }
 }

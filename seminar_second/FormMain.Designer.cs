@@ -69,6 +69,7 @@
             tbLoanAmount.Name = "tbLoanAmount";
             tbLoanAmount.Size = new Size(260, 31);
             tbLoanAmount.TabIndex = 2;
+            tbLoanAmount.TextChanged += tbAny_TextChanged;
             tbLoanAmount.KeyPress += tbAny_KeyPress;
             // 
             // labelLoanAmount
