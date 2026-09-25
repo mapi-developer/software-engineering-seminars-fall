@@ -10,35 +10,35 @@ namespace seminar_second
         // Calculate button handlers
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            decimal loanAmount = decimal.Parse(tbLoanAmount.Text);
-            decimal monthlyInterest = decimal.Parse(tbAnnualInterest.Text);
-            decimal monthlyPayment = decimal.Parse(tbMonths.Text);
-
-            decimal remaining = loanAmount;
-            decimal paid = 0;
-
-            while (remaining > 0)
+            if (!double.TryParse(tbAnnualInterest.Text, out double principal) ||
+                !double.TryParse(tbAnnualInterest.Text, out double annualRate) ||
+                !int.TryParse(tbMonths.Text, out int months) ||
+                principal <= 0 || annualRate < 0 || months <= 0)
             {
-                decimal interest = remaining * (monthlyInterest / 100);
-
-                if (interest >= monthlyPayment)
-                {
-                    tbMonthlyPayment.Text = "Loan can't be covered";
-                    return;
-                }
-
-                remaining += interest;
-
-                if (remaining < monthlyPayment)
-                {
-                    monthlyPayment = remaining;
-                }
-                remaining -= monthlyPayment;
-
-                paid += monthlyPayment;
+                MessageBox.Show("Please enter valid positive numbers.");
+                return;
             }
 
-            tbMonthlyPayment.Text = Math.Ceiling(paid).ToString();
+            double loanAmount = double.Parse(tbLoanAmount.Text);
+            double annualInterest = double.Parse(tbAnnualInterest.Text);
+            int monthsAmount = int.Parse(tbMonths.Text);
+
+            double r = annualInterest / 100.0 / 12.0;
+
+            double monthlyPayment;
+            
+            if (r == 0)
+            {
+                monthlyPayment = loanAmount / monthsAmount;
+            }
+            else
+            {
+                monthlyPayment = loanAmount *
+                                 (r * Math.Pow(1 + r, monthsAmount)) /
+                                 (Math.Pow(1 + r, monthsAmount) - 1);
+            }
+
+            tbMonthlyPayment.Text = Math.Ceiling(monthlyPayment).ToString();
         }
 
 
@@ -63,20 +63,22 @@ namespace seminar_second
 
         private void tbAny_TextChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(sender);
-            if (double.TryParse(tbLoanAmount.Text, out double x))
+            if (sender is not TextBox tb)
+                return;
+
+            if (double.TryParse(tb.Text, out double x))
             {
-                tbLoanAmount.BackColor = Color.LightBlue;
+                tb.BackColor = Color.LightBlue;
             }
             else
             {
-                if (tbLoanAmount.Text.Length == 0)
+                if (tb.Text.Length == 0)
                 {
-                    tbLoanAmount.BackColor = Color.White;
+                    tb.BackColor = Color.White;
                 }
                 else
                 {
-                    tbLoanAmount.BackColor = Color.Salmon;
+                    tb.BackColor = Color.Salmon;
                 }
             }
         }

@@ -89,6 +89,7 @@
             tbAnnualInterest.Size = new Size(260, 31);
             tbAnnualInterest.TabIndex = 4;
             tbAnnualInterest.KeyPress += tbAny_KeyPress;
+            tbAnnualInterest.TextChanged += tbAny_TextChanged;
             // 
             // tbMonths
             // 
@@ -97,6 +98,7 @@
             tbMonths.Size = new Size(260, 31);
             tbMonths.TabIndex = 5;
             tbMonths.KeyPress += tbAny_KeyPress;
+            tbMonths.TextChanged += tbAny_TextChanged;
             // 
             // tbMonthlyPayment
             // 
@@ -106,6 +108,7 @@
             tbMonthlyPayment.Name = "tbMonthlyPayment";
             tbMonthlyPayment.Size = new Size(232, 31);
             tbMonthlyPayment.TabIndex = 6;
+            
             // 
             // labelAnnualInterest
             // 
